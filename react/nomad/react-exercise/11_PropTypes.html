@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HIHI</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+
+    <script type="text/babel">
+        function Btn({ banana = "balbalbla", changeValue }) {
+            return <button
+                onClick={changeValue}
+                style={{
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 10px",
+                    border: 0,
+                    borderRadius: 10,
+                }}>
+                {banana}
+            </button>
+        }
+
+        Btn.propTypes = {
+            banana: PropTypes.string,
+        }
+        const App = () => {
+            const [value, setValue] = React.useState("Save Changes");
+            const changeValue = () => setValue("Reverse Changes");
+            return (
+                <div>
+                    <Btn banana={value} changeValue={changeValue} />
+                    <Btn banana="Continue" />
+                </div>
+            );
+        }
+        //정통 html요소에다가 changeValue을 한다면 그것은 이벤트 리스너이지만 임의의 custom component에 coClick은 그저 props일 뿐이다
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
+        //부모에 변경이 생긴다면 모든 자식들은 reRender 된다. 이는 최적화에 문제를 발생시키므로
+        //변화가 없는 자식들은 바꾸지 말라는 의미에서 React.memo인 component를 만들어준다.
+    </script>
+</body>
+
+</html>

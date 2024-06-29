@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HIHI</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      const App = () => {
+        const [counter, setCounter] = React.useState(0); //return -> [data,f] // data를 modify하는 function
+        const onClick = () => {
+          setCounter(counter + 1);
+        };
+
+        return (
+          <div>
+            <h3>Total clicks: {counter}</h3>
+            <button onClick={onClick}>Click Me</button>
+          </div>
+        );
+      };
+
+      ReactDOM.render(<App />, root);
+
+      //const food = ["tomato", "potato"]
+      //const [myFavorite, secFavorite] = food; -> const myFavorite = food[0];
+    </script>
+  </body>
+</html>

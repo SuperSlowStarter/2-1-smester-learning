@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>HIHI</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    //class 나 for 같은 js용어를 사용하지 않을 것
+    ///class -> className, for -> htmlFor 본래 반복문인 for과 헷갈리지 않기 위해서
+    const App = () => {
+      const [minutes, setMinutes] = React.useState(0); //useState?뒗 array瑜? ?젣怨?
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+      };
+      const reset = () => setMinutes(0);
+      return (
+        <div>
+          <h1 className="hi">Super converter</h1>
+          <div>
+            <label htmlfor="minutes">Minutes</label>
+            <input
+              value={minutes}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+            ></input>
+          </div>
+          <div>
+            <label htmlfor="hours">Hours</label>
+            <input value={Math.round(minutes / 60)} id="hours" placeholder="Hours" type="number" disabled />
+          </div>
+          <button onClick={reset}>Reset</button>
+        </div>
+      );
+    };
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</body>
+
+</html>
